@@ -1,14 +1,14 @@
 from django.db import models
-from enum import Enum
+#from enum import Enum
 
 
-class TaskPriority(Enum):
+class TaskPriority(models.TextChoices):
     HIGH = 'high'
     MEDIUM = 'medium'
     LOW = 'low'
 
 
-class TaskStatus(Enum):
+class TaskStatus(models.TextChoices):
     PENDING = 'pending'
     STARTED = 'starting'
     COMPLETED = 'completed'
@@ -20,12 +20,12 @@ class Task(models.Model):
     description = models.TextField()
     priority = models.CharField(
         max_length=20,
-        choices=[(tag, tag.value) for tag in TaskPriority],
+        choices=TaskPriority.choices,
         default=TaskPriority.LOW
     )
     status = models.CharField(
         max_length=40,
-        choices=[(state, state.value) for state in TaskStatus],
+        choices=TaskStatus.choices,
         default=TaskStatus.PENDING
     )
     created_at = models.DateTimeField('Date Created')

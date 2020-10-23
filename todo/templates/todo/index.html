@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo App</title>
+</head>
+<body>
+    {% if all_task %}
+    <ul>
+        {% for task in all_task %}
+            <li><a href="/{{ task.id }}">{{ task.name }}</a> </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No Task available</p>
+    {% endif %}
+</body>
+</html>
