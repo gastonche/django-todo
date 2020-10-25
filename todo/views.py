@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 #from django.http import HttpResponse
 
 from .models import Task
@@ -11,3 +11,8 @@ def index(request):
     context = {'all_task': all_task}
 
     return render(request, 'todo/index.html', context)
+
+
+def detail(request, task_id):
+    task_detail = get_object_or_404(Task, pk=task_id)
+    return render(request, 'todo/details.html', {'task': task_detail})
