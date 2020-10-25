@@ -8,30 +8,7 @@
     <h1> {{task.name}}</h1>
     <form action="{% url 'todo:update' task.id %}" method="post">
         {% csrf_token %}
-        <div>
-            <label for="name">Name</label>
-            <input name="name" id="name" value="{{task.name}}" />
-        </div>
-        <div>
-            <label for="description">Description</label>
-            <textarea name="description" id="description">{{task.description}}</textarea>
-        </div>
-        <div>
-            <label for="status">Status</label>
-            <select name="status" id="status" value="{{task.status}}">
-               {% for status in statuses %}
-                   <option value="{{status.0}}" {% if task.status == status.0 %} selected {% endif %}>{{status.1}}</option>
-               {% endfor %}
-            </select>
-        </div>
-        <div>
-            <label for="priority">Priority</label>
-            <select name="priority" id="priority" value="{{task.priority}}">
-               {% for priority in priorities %}
-                   <option value="{{priority.0}}" {% if task.priority == priority.0 %} selected {% endif %}>{{priority.1}}</option>
-               {% endfor %}
-            </select>
-        </div>
+         {{form}}
         <button class="button"> Submit </button>
     </form>
 </body>
