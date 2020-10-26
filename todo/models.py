@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 #from enum import Enum
 
 
@@ -16,7 +17,7 @@ class TaskStatus(models.TextChoices):
 
 
 class Task(models.Model):
-    name = models.CharField(max_length=300)
+    name = models.CharField(max_length=100)
     description = models.TextField()
     priority = models.CharField(
         max_length=20,
@@ -28,8 +29,8 @@ class Task(models.Model):
         choices=TaskStatus.choices,
         default=TaskStatus.PENDING
     )
-    created_at = models.DateTimeField('Date Created')
-    updated_at = models.DateTimeField('Last update')
+    created_at = models.DateTimeField('Date Created', null=True)
+    updated_at = models.DateTimeField('Last update', null=True)
 
     def __str__(self):
         return self.name
